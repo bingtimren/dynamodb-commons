@@ -60,3 +60,6 @@ typings/
 
 # next.js build output
 .next
+
+# Just ignore .js as they are build results
+*.js
