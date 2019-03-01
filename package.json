@@ -1,10 +1,16 @@
 {
   "name": "dynamodb-commons",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "A collection of libraries and tools for AWS dynamodb",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "*.js",
+    "*.ts",
+    "README.md",
+    "*.json"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bingtimren/dynamodb-commons.git"

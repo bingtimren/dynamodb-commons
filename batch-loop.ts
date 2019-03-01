@@ -5,9 +5,9 @@ import AWS = require('aws-sdk');
  * Do batchwrite in a loop until no unprocessed items left
  * @param dbDocClient - AWS.DynamoDB.DocumentClient
  * @param params - AWS.DynamoDB.DocumentClient.BatchWriteItemInput
- * @param maxLoop - maximum number of loops
- * @param minDelay - minimum delay
- * @param maxDelay - maximum delay
+ * @param maxLoop - optional, maximum number of loops, default 20
+ * @param minDelay - optional, minimum delay in milliseconds, default 500
+ * @param maxDelay - optional, maximum delay in milliseconds, default 2500
  * @returns response, either (1) Without unprocessed, signaling finish, or 
  *            (2) WITH unprocessed, done maximum loops 
  */
