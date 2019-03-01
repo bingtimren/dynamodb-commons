@@ -10,4 +10,5 @@ To release, first `npm login`, then check version and `npm publish`
 
 `npm install dynamodb-commons`
 
-
+For Javascript, `require 'dynamodb-commons/build/batch-loop'` etc.
+For Typescript, `import {} from 'dynamodb-commons/batch-loop'` etc.
