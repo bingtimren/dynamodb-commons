@@ -16,15 +16,16 @@ export async function dbBatchWriteLoop(
     params: AWS.DynamoDB.DocumentClient.BatchWriteItemInput,
     maxLoop: number = 20,
     minDelay: number = 500,
-    maxDelay: number = 2500): Promise<AWS.DynamoDB.DocumentClient.BatchWriteItemOutput | undefined> {
-    let batchWriteResp: AWS.DynamoDB.DocumentClient.BatchWriteItemOutput | undefined = undefined
-    for (var i = 0; i < maxLoop; i++) {
-        // error will be thrown
-        try {
-            batchWriteResp = await dbDocClient.batchWrite(params).promise()
+    maxDelay: number = 2500): Promise<AWS.DynamoDB.DocumentClient.BatchWriteItemOutput> {
+    let batchWriteResp : AWS.DynamoDB.DocumentClient.BatchWriteItemOutput|undefined = undefined
+    try {
+        batchWriteResp = await dbDocClient.batchWrite(params).promise();
+        let loop:number = 0
+        do {
             let unprocessed = batchWriteResp.UnprocessedItems
+            loop += 1
             // return, if no more unprocessed items, or this is the last loop
-            if ((unprocessed === undefined || Object.keys(unprocessed).length === 0) || (i + 1 === maxLoop)) {
+            if ((unprocessed === undefined || Object.keys(unprocessed).length === 0) || (loop === maxLoop)) {
                 return batchWriteResp
             }
             // prepare to retry
@@ -32,13 +33,14 @@ export async function dbBatchWriteLoop(
             // delay a random time 
             const delay = Math.floor(Math.random() * (maxDelay - minDelay) + minDelay)
             await new Promise(resolve => setTimeout(resolve, delay));
-        } catch (error) {
-            throw {
-                error: error,
-                lastBatchWriteResponse: batchWriteResp
-            }
+        } while(true);
+    } catch (error) {
+        throw {
+            error: error,
+            lastBatchWriteResponse: batchWriteResp
         }
     }
+
 }
 
 
