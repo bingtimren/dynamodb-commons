@@ -1,6 +1,6 @@
 {
   "name": "dynamodb-commons",
-  "version": "1.0.7",
+  "version": "1.0.11",
   "description": "A collection of libraries and tools for AWS dynamodb",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,9 @@
     "README.md",
     "*.json"
   ],
+  "bin": {
+    "ddb-batchwrite": "dynamodb-batchputitems.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bingtimren/dynamodb-commons.git"
@@ -22,7 +25,11 @@
   },
   "homepage": "https://github.com/bingtimren/dynamodb-commons#readme",
   "devDependencies": {
-    "@types/node": "^11.9.6",
+    "@types/node": "^11.9.6"
+  },
+  "dependencies": {
+    "async-prompt": "^1.0.1",
+    "commander": "^2.19.0",
     "aws-sdk": "^2.412.0"
   }
 }
