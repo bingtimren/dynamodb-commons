@@ -1,28 +1,38 @@
 # dynamodb-commons
-A collection of small node/AWS dynamodb utilities
+
+A collection of AWS dynamodb utilities and helper functions
 
 ## Build and release
 
 To build, simply `tsc`
+
 To release, first `npm login`, then check version and `npm publish`
 
 ## Usage
 
 To use the javascript/typescript functions, `npm install dynamodb-commons`
+
 To use the commandline tools, `sudo npm install -g dynamodb-commons`
 
 ## (CLI tool) ddb-batchwrite
 
+```
 Usage: ddb-batchwrite [options] <aws_profile> <jsonFile> <tableName>
+```
 
-<aws_profile> is the AWS CLI configuration profile. Must be provided explicitly. Default profile is "default".
-<jsonFile> is a JSON file containing an array of objects to be batch written into the table.
-<tableName> is the name of the table
+**aws_profile** is the AWS CLI configuration profile. Must be provided explicitly. Default profile is "default".
+
+**jsonFile** is a JSON file containing an array of objects to be batch written into the table.
+
+**tableName** is the name of the table
 
 ## (function) batch-loop
 
 For Javascript, `require 'dynamodb-commons/batch-loop'` etc.
+
 For Typescript, `import {} from 'dynamodb-commons/batch-loop'` etc.
+
+See source code comments for details.
 
 ```
 /**
